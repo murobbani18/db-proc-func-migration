@@ -1,0 +1,275 @@
+{
+	"info": {
+		"_postman_id": "bbe8e007-c3dd-455f-94e0-3ad388eb1796",
+		"name": "RSFatmawati",
+		"description": "Notes: berikut nama prosedur yang bisa digunakan dalam api.\n\n### Nama Prosedur (pn)\n\n1. **fn_get_patient_insurance_pagination**: Mengambil data pasien dengan asuransi secara paginasi.\n    \n2. **fn_get_patient**: Mengambil data pasien berdasarkan `norm`.\n    \n3. **sp_insert_patients_and_insurance**: Menyisipkan data pasien dan asuransi baru.\n    \n4. **sp_update_patient_and_insurance**: Memperbarui data pasien dan asuransi yang ada.\n    \n5. **sp_deactivate_insurance**: Menonaktifkan asuransi untuk pasien.\n    \n\nCreated by: Mufti R",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7157407"
+	},
+	"item": [
+		{
+			"name": "Get datatable",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/v1/datatable?pn=fn_get_patient_insurance_pagination&page=1&per_page=10&filter={\"nama\": \"Alan Walker\"}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"datatable"
+					],
+					"query": [
+						{
+							"key": "pn",
+							"value": "fn_get_patient_insurance_pagination"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "per_page",
+							"value": "10"
+						},
+						{
+							"key": "filter",
+							"value": "{\"nama\": \"Alan Walker\"}"
+						}
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "Get data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/v1/data?pn=fn_get_patient&filter={\"norm\": \"RM113613\"}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"data"
+					],
+					"query": [
+						{
+							"key": "pn",
+							"value": "fn_get_patient"
+						},
+						{
+							"key": "filter",
+							"value": "{\"norm\": \"RM113613\"}"
+						}
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "Post data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pn\": \"sp_insert_patients_and_insurance\",\n    \"data\": [\n        {\n            \"nama\": \"Alan Walker\",\n            \"alamat\": \"82205 Nanda Underpass Apt. 621, East Matthew, PR 38356\",\n            \"asuransi\": [\n                {\n                    \"jenis\": 1,\n                    \"nomor\": \"BP275561213339366\",\n                    \"is_aktif\": 1\n                },\n                {\n                    \"jenis\": 2,\n                    \"nomor\": \"PR399975398477779\",\n                    \"is_aktif\": 1\n                }\n            ],\n            \"kode_pos\": 20100,\n            \"jenis_kelamin\": 1\n        },\n        {\n            \"nama\": \"John Doe\",\n            \"alamat\": \"123 Main St, Springfield, IL 62701\",\n            \"asuransi\": [],\n            \"kode_pos\": 62701,\n            \"jenis_kelamin\": 1\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/data",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"data"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Update data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful PUT request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pn\": \"sp_update_patient_and_insurance\",\n    \"data\": {\n        \"norm\": \"RM113613\",\n        \"nama\": \"Rebecca Walker\",\n        \"alamat\": \"82205 ARIK Underpass Apt. 621, East Matthew, PR 38356\",\n        \"asuransi\": [\n            {\n            \"jenis\": 1,\n            \"nomor\": \"BP275561218889366\",\n            \"is_aktif\": 1\n            },\n            {\n            \"jenis\": 2,\n            \"nomor\": \"PR399978898401079\",\n            \"is_aktif\": 1\n            }\n        ],\n        \"kode_pos\": 20100,\n        \"jenis_kelamin\": 1\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/data?pn=update_patient_and_insurance&data",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"data"
+					],
+					"query": [
+						{
+							"key": "pn",
+							"value": "update_patient_and_insurance"
+						},
+						{
+							"key": "data",
+							"value": null
+						}
+					]
+				},
+				"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful DELETE request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pn\": \"sp_deactivate_insurance\",\r\n    \"data\": {\r\n        \"norm\": \"RM113613\",\r\n        \"nomor\": \"BP275561218889366\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/data",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"data"
+					]
+				},
+				"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000"
+		}
+	]
+}
